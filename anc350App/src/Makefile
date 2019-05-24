@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 
 USR_INCLUDES += -I$(ASYN)/include
 
-LIBRARY += anc350
+LIBRARY_IOC += anc350
 
 LIB_LIBS += asyn
 anc350_LIBS += $(EPICS_BASE_IOC_LIBS)

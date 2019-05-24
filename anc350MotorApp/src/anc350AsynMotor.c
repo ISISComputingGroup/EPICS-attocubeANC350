@@ -35,11 +35,11 @@
 #include "ellLib.h"
 
 #include "drvSup.h"
-#include "epicsExport.h"
 #define DEFINE_MOTOR_PROTOTYPES 1
 #include "motor_interface.h"
 #include "asynDriver.h"
 #include "asynOctetSyncIO.h"
+#include "epicsExport.h"
 #include "ucprotocol.h"
 #include "anc350.h"
 
@@ -1092,7 +1092,7 @@ static void drvAnc350Task( ANC350DRV_ID pDrv )
   float timeout = 0.0;
   float factor = 0.0;
   float skipglobal = 0.0;
-  float skips[pDrv->nAxes];
+  float *skips = malloc(pDrv->nAxes);
   epicsUInt32 globalStatus = 0;
 
   for (i=0; i<pDrv->nAxes; i++) {
@@ -1145,6 +1145,7 @@ static void drvAnc350Task( ANC350DRV_ID pDrv )
       skips[i] -= factor;
     }
   }
+  free(skips);
 }
 
 /*

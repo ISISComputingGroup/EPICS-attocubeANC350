@@ -8,7 +8,7 @@ cd ${TOP}
 dbLoadDatabase("dbd/ancTest350.dbd",0,0)
 ancTest350_registerRecordDeviceDriver(pdbbase)
 
-drvAsynIPPortConfigure("IP1","10.2.2.78:2101",0,0,0)
+drvAsynIPPortConfigure("IP1","130.246.51.234:2101",0,0,0)
 anc350AsynMotorCreate("IP1", "0", "0", "4")
 drvAsynMotorConfigure("ANC1", "anc350AsynMotor", "0", "4")
 
