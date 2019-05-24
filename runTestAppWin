@@ -1,0 +1,6 @@
+cd iocBoot
+echo $PWD
+cd iocancTest350
+echo $PWD
+../../bin/cygwin-x86/ancTest350.exe ./st.cmd
+
