@@ -13,7 +13,7 @@ pattern
 {T1,  IP1}
 }
 
-file ../../../../motorR6-4-2/db/basic_asyn_motor.db {
+file $(MOTOR)/db/basic_asyn_motor.db {
 pattern
 {P,   M,    DESC, DTYP,      DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, PORT, ADDR, MRES,  PREC, EGU, DHLM,  DLLM,   INIT}
 {T1:, MOT1, Desc, asynMotor, 0,   300,  50,   1,    0,    0,    0,    ANC1, 0,    0.001, 3,    um,  10000, -10000, 0}

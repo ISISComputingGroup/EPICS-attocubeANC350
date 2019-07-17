@@ -45,7 +45,6 @@
 #include <recSup.h>
 #include <devSup.h>
 
-#include <epicsExport.h>
 #include "asynDriver.h"
 #include "asynDrvUser.h"
 #include "asynOctet.h"

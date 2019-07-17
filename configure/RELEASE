@@ -12,9 +12,8 @@
 #SNCSEQ=_SNCSEQ_
 
 # Asyn
-ASYN=$(TOP)/../asyn4-17
-MOTOR=$(TOP)/../motorR6-7-1
-ANC=$(TOP)
+ASYN=$(SUPPORT)/asyn/master
+MOTOR=$(SUPPORT)/motor/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 
-# EPICS_BASE usually appears last so other apps can preempt definitions
-EPICS_BASE=/usr/software/epics/base-3-14-11
+include $(TOP)/../../../ISIS_CONFIG
