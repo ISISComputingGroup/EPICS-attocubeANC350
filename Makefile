@@ -14,4 +14,8 @@ DIRS += anc350MotorApp
 DIRS += ancTest350App
 DIRS += $(wildcard ioc[Bb]oot)
 
+ancTest350App_DEPEND_DIRS += anc350MotorApp
+anc350MotorApp_DEPEND_DIRS += anc350App
+iocBoot_DEPEND_DIRS += ancTest350App
+
 include $(TOP)/configure/RULES_TOP
