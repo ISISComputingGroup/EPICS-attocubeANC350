@@ -24,15 +24,13 @@ ancTest350_DBD += anc350AsynMotor.dbd
 #ancTest350_DBD += devSoftMotor.dbd
 
 # Include the following libraries in the build
-ancTest350_LIBS += asyn
-ancTest350_LIBS += motor
-ancTest350_LIBS += softMotor
-ancTest350_LIBS += motorSimSupport
-ancTest350_LIBS += anc350
 ancTest350_LIBS += anc350AsynMotor
+ancTest350_LIBS += anc350
+ancTest350_LIBS += motorSimSupport
+ancTest350_LIBS += softMotor
+ancTest350_LIBS += motor
+ancTest350_LIBS += asyn
 ancTest350_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 ancTest350_SRCS += ancTest350_registerRecordDeviceDriver.cpp
