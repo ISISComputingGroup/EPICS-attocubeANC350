@@ -525,7 +525,7 @@ static int motorAxisGet( AXIS_HDL pAxis, int location, int *value, int logGlobal
 
   if (status!=asynSuccess){
     comms++;
-    if (comms > 200){
+    if (comms > 20){
       motorParam->setInteger( pAxis->params, motorAxisCommError, 1 );
       drvPrint( drvPrintParam, TRACE_ERROR, "anc350AsynMotorGet: Comms error.\n");
     }
@@ -975,6 +975,10 @@ static void drvAnc350GetAxisStatus( AXIS_HDL pAxis, asynUser * pasynUser, epicsU
 			/* Hump detected? */
       		hump = (value&ANC_STATUS_HUMP) >> 1;
 		}
+		else
+		{
+			motorAxisforceCallback(pAxis);
+		}
 
       /* Get the current amplitude */
 			status = motorAxisGet( pAxis, ID_ANC_AMPL, &value, 0 );
@@ -1015,6 +1019,10 @@ static void drvAnc350GetAxisStatus( AXIS_HDL pAxis, asynUser * pasynUser, epicsU
         status = motorParam->setDouble(pAxis->params, motorAxisPosition, position);
         motorParam->setDouble(pAxis->params, motorAxisEncoderPosn, position);
       }
+	  else
+	  {
+		  motorAxisforceCallback(pAxis);
+	  }
 
 			/* Check for hard limit.  Only hump available so notify limit by checking direction */
 			if (hump && (humpstatus == asynSuccess)){
