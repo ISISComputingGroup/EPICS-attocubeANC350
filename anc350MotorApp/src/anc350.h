@@ -318,6 +318,8 @@
                                               The value is scaled with factor 1000. */
 #define ID_ANC_SENSOR_RES     0x0567     /**< APS name 'sensorres'. Internal averaging of the sensor signal */
 
+#define ID_ANC_AXIS_TOGGLE    0x3030     /**< Turns the output of the axis on or off */
+
 /* @} */
 
 

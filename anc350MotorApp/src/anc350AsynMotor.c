@@ -596,6 +596,32 @@ static int motorAxisSetInteger( AXIS_HDL pAxis, motorAxisParam_t function, int v
 }
 
 /*
+ * Function: setupAxisForMove
+ *
+ * Parameters: pAxis         - Pointer to motor axis handle
+ *
+ * Returns: Integer status value
+ * 
+ * Description:
+ *
+ * Called before any kind of move to get the axis into a known good state ready to move. Hump 
+ * detection is turned on to stop the axis if there is a problem, the output of the axis is 
+ * turned on the amplitude control mode is set to speed closed loop.
+ */
+int setupAxisForMove(AXIS_HDL pAxis)
+{
+	int status = MOTOR_AXIS_OK;
+	/* Set hump detection */
+    status = motorAxisSet( pAxis, ID_ANC_STOP_EN, 1, 0 );
+	/* Turn axis on */
+    status |= motorAxisSet( pAxis, ID_ANC_AXIS_TOGGLE, 1, 0 );
+    /* Set amplitude ctrl to amplitude closed loop */
+    status |= motorAxisSet( pAxis, ID_ANC_REGSPD_SELSP, 1, 0 );
+	
+	return status;
+}
+
+/*
  * Function: motorAxisMove
  *
  * Parameters: pAxis         - Pointer to motor axis handle
@@ -626,10 +652,9 @@ static int motorAxisMove( AXIS_HDL pAxis, double position, int relative, double 
   //double vel_amp = 0.0;
 
 	if (pAxis != NULL){
-    /* Set hump detection */
-    status = motorAxisSet( pAxis, ID_ANC_STOP_EN, 1, 0 );
-    /* Set amplitude ctrl to amplitude closed loop */
-    status = motorAxisSet( pAxis, ID_ANC_REGSPD_SELSP, 1, 0 );
+    /* Setup the axis for a move */
+    status = setupAxisForMove( pAxis );
+
     /* Calculate the required frequency */
     //vel_amp = max_velocity / 1000.0;
     //if (vel_amp < 0.0){
@@ -693,10 +718,9 @@ static int motorAxisHome( AXIS_HDL pAxis, double min_velocity, double max_veloci
   //double vel_amp = 0.0;
 
 	if (pAxis != NULL){
-    /* Set hump detection */
-    status = motorAxisSet( pAxis, ID_ANC_STOP_EN, 1, 0 );
-    /* Set amplitude ctrl to amplitude closed loop */
-    status = motorAxisSet( pAxis, ID_ANC_REGSPD_SELSP, 1, 0 );
+    /* Setup the axis for a move */
+    status = setupAxisForMove( pAxis );
+	
     /* Calculate the required frequency */
     //vel_amp = max_velocity / 1000.0;
     //if (vel_amp < 0.0){
@@ -758,10 +782,9 @@ static int motorAxisVelocityMove(  AXIS_HDL pAxis, double min_velocity, double v
   //double vel_amp = 0.0;
 
 	if (pAxis != NULL){
-    /* Set hump detection */
-    status = motorAxisSet( pAxis, ID_ANC_STOP_EN, 1, 0 );
-    /* Set amplitude ctrl to amplitude closed loop */
-    status = motorAxisSet( pAxis, ID_ANC_REGSPD_SELSP, 1, 0 );
+    /* Setup the axis for a move */
+    status = setupAxisForMove( pAxis );
+	
     /* Calculate the required frequency */
     //vel_amp = velocity / 1000.0;
     //if (vel_amp < 0.0){
