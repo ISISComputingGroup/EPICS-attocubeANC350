@@ -393,7 +393,7 @@ static int motorAxisSet( AXIS_HDL pAxis, int location, int value, int logGlobal 
 {
   asynStatus status;
 	int localMid = 1;
-  unsigned int nBytesWritten = 0;
+  size_t nBytesWritten = 0;
   asynUser *pasynUser = (logGlobal? pAxis->pDrv->pasynUser: pAxis->pasynUser);
   UcSetTelegram request;
 
@@ -457,8 +457,8 @@ static int motorAxisGet( AXIS_HDL pAxis, int location, int *value, int logGlobal
 {
 	asynStatus status;
 	int localMid = 1;
-  unsigned int nBytesWritten = 0;
-  unsigned int nBytesRead = 0;
+  size_t nBytesWritten = 0;
+  size_t nBytesRead = 0;
   int eom = 0;
   int match = 0;
   int count = 0;
@@ -506,7 +506,7 @@ static int motorAxisGet( AXIS_HDL pAxis, int location, int *value, int logGlobal
                                    raw,
                                    28,
                                    0.1,
-   																 &nBytesWritten,
+   								   &nBytesWritten,
                                    &nBytesRead,
                                    &eom);
 
